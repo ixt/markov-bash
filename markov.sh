@@ -11,7 +11,7 @@ if [ ! -f "${1}" ];then
 	echo "File not found: ${1}"
 	exit;
 fi
-words=`tr '\n' ' ' < $1|sed 's/[^[:alnum:][:space:]]\+//g'| tr '[:upper:]' '[:lower:]'`
+words=`tr '\n' ' ' < $1|sed 's/[^[:alnum:]\/[:space:].!?@]\+//g'`
 index=$((2 + RANDOM % `echo $words|wc -w`))
 pattern=`echo $words|cut -f$index-$((index+1)) -d' '`
 echo -n $pattern
